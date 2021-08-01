@@ -1,7 +1,7 @@
 //import styled from 'styled-components'
 import MainGrid from '../src/componetes/MainGrid'
 import Box from '../src/componetes/Box'
-import {AlurakutMenu, OrkutNostalgicIconSet} from '../src/lib/AlurakutComuns'
+import {AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet} from '../src/lib/AlurakutComuns'
 import {ProfileRelationsBoxWrapper} from '../src/componetes/ProfileRelation'
 
 function ProfileSiderbar(propiedade){
@@ -9,6 +9,14 @@ function ProfileSiderbar(propiedade){
   return(
     <Box >
       <img src={`https://github.com/${propiedade.githubUser}.png`} style={{borderRadius:'8px'}}/>
+      <hr/>
+      <p>
+        <a className="boxLink" href={`https://github.com/${propiedade.githubUser}`}>
+        @{propiedade.githubUser}
+        </a>
+      </p>
+      <hr/>
+    <AlurakutProfileSidebarMenuDefault/>
     </Box>
   )
 }
@@ -27,6 +35,12 @@ export default function Home() {
   'rafaballerini',
   'marcobrunodev',
   'fellipefialho'
+]
+const JogosFavoritos = [
+  
+]
+const SeriesFavoritas = [
+ 
 ]
 
   return (
@@ -58,6 +72,48 @@ export default function Home() {
 
       <ul>
       {PessoasFavoritas.map((itematual)=>{
+        return (
+          <li>
+          <a href={`/users/${itematual}`} key={itematual}>
+          <img src={`https://github.com/${itematual}.png`}/>
+          <span>{itematual}</span>
+          </a>
+          </li>
+        )
+      })}
+      </ul>
+      </ProfileRelationsBoxWrapper>
+    </Box>
+    
+    <Box>
+        <ProfileRelationsBoxWrapper>
+      <h2 className="smallTittle">
+           Jogos favoritos ({JogosFavoritos.length})
+      </h2>
+
+      <ul>
+      {JogosFavoritos.map((itematual)=>{
+        return (
+          <li>
+          <a href={`/users/${itematual}`} key={itematual}>
+          <img src={`https://github.com/${itematual}.png`}/>
+          <span>{itematual}</span>
+          </a>
+          </li>
+        )
+      })}
+      </ul>
+      </ProfileRelationsBoxWrapper>
+    </Box>
+
+    <Box>
+        <ProfileRelationsBoxWrapper>
+      <h2 className="smallTittle">
+           Séries favoritas ({SeriesFavoritas.length})
+      </h2>
+
+      <ul>
+      {SeriesFavoritas.map((itematual)=>{
         return (
           <li>
           <a href={`/users/${itematual}`} key={itematual}>
