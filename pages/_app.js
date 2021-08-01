@@ -1,4 +1,6 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
+ import {AlurakutStyles} from '../src/lib/AlurakutComuns'
+
 // const GlobalStyle configuraçao globais de css
 const GlobalStyle = createGlobalStyle`
 
@@ -17,6 +19,13 @@ const GlobalStyle = createGlobalStyle`
     min-heigth:100vh;
     flex-direction:column;
   }
+  img{
+    max-width:100%;
+    height:auto;
+    display:block;
+  }
+  
+  ${AlurakutStyles}
 `
 
 const theme = {
