@@ -184,6 +184,7 @@ function AlurakutMenuProfileSidebar({ githubUser }) {
 // ================================================================================================================
 // AlurakutProfileSidebarMenuDefault
 // ================================================================================================================
+//src={`${BASE_URL}/icons/user.svg`}
 export function AlurakutProfileSidebarMenuDefault() {
   return (
     <AlurakutProfileSidebarMenuDefault.Wrapper>
@@ -234,6 +235,7 @@ AlurakutProfileSidebarMenuDefault.Wrapper = styled.div`
       margin-right: 5px; 
     }
   }
+  
 `;
 
 // ================================================================================================================
