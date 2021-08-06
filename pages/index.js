@@ -5,19 +5,29 @@ import Box from '../src/componetes/Box';
 import {AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet} from '../src/lib/AlurakutComuns';
 import {ProfileRelationsBoxWrapper} from '../src/componetes/ProfileRelation';
 
+
+
 function ProfileSiderbar(propiedade){
+  
   return(
-    <Box >
-      <img src={`https://github.com/${propiedade.githubUser}.png`} style={{borderRadius:'8px'}}/>
-      <hr/>
-      <p>
-        <a className="boxLink" href={`https://github.com/${propiedade.githubUser}`}>
-        @{propiedade.githubUser}
-        </a>
-      </p>
-      <hr/>
-    <AlurakutProfileSidebarMenuDefault/>
-    </Box>
+    
+    
+      <Box as="aside">
+      
+          <img src={`https://github.com/${propiedade.githubUser}.png`} style={{borderRadius:'8px'}}/>
+          <hr/>
+          <p>
+            <a className="boxLink" href={`https://github.com/${propiedade.githubUser}`}>
+            @{propiedade.githubUser}
+            </a>
+          </p>
+          <hr/>
+      
+      <AlurakutProfileSidebarMenuDefault/>
+      
+      </Box>
+    
+    
   )
 }
 
@@ -32,7 +42,7 @@ export default function Home() {
   const [comunidades, setcomunidades] = React.useState([{
     id:'533577979393953775779179719719',
     title:'Eu odeio acorda cedo',
-    image: 'https://static.apksmods.com/images/en/com.miHoYo.GenshinImpact/icon.png'
+    image: 'https://4.bp.blogspot.com/-rkNMIji7xw4/Wzj43pATksI/AAAAAAAABlc/kE7NGMIXS2YyWMRH3DolTgt7BUQtJIHXQCLcBGAs/s1600/garfield.jpg'
   }])
   
   const [jogos, setjogos] = React.useState([{
@@ -58,26 +68,13 @@ export default function Home() {
   'omariosouto',
   'peas',
   'rafaballerini',
-  'marcobrunodev'
+  'marcobrunodev',
+  'xzxzxzx'
 ]
 /*const comunidade = [
   'Alura'
 ]*/
-const JogosFavoritosNome = [
-  'Genshin Impact',
-  'Honkai Impact',
-  'Punishing gray raven',
-  'Fortnite'
-  
 
-]
-const JogosFavoritosImg = [
-  'https://static.apksmods.com/images/en/com.miHoYo.GenshinImpact/icon.png',
-  'https://static.apkdojo.com/images/games/honkai-impact-3-icon.png',
-  'https://storage.qoo-static.com/game/10109/CFWW6p9N3I95us3hVptPCEqk84xl20W0.png',
-  'https://images-americanas.b2w.io/produtos/01/00/img/1300669/0/1300669064_1GG.jpg'
-
-]
 
 
   return (
@@ -116,14 +113,14 @@ const JogosFavoritosImg = [
         setcomunidades(comunidadeAtuaizada)
 
         
-        const DadosDojogos = new FormData(event.target)
-        const jogo = {
-          id: new Date().toISOString,
-          title: DadosDojogos.get('title'),
-          image: DadosDojogos.get('image')
-        }
-        const jogoAtuaizada = [...jogos, jogo]
-        setjogos(jogoAtuaizada)
+        //const DadosDojogos = new FormData(event.target)
+        //const jogo = {
+          //id: new Date().toISOString,
+          //title: DadosDojogos.get('title'),
+          //image: DadosDojogos.get('image')
+        //}
+        //const jogoAtuaizada = [...jogos, jogo]
+        //setjogos(jogoAtuaizada)
 
         
 
@@ -167,6 +164,7 @@ const JogosFavoritosImg = [
         )
       })}
       </ul>
+      
       </ProfileRelationsBoxWrapper>
 
       </Box>
@@ -188,6 +186,7 @@ const JogosFavoritosImg = [
         )
       })}
       </ul>
+
       </ProfileRelationsBoxWrapper>
     </Box>
     

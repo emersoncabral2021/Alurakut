@@ -5,6 +5,7 @@ background: white;
 border-radiua: 8px;
 padding:16px;
 margin-bottom:10px;
+overflow-y: auto;
 /*css pre-pronto*/
 
 .boxLink{
@@ -12,6 +13,7 @@ margin-bottom:10px;
     color:#2E7BB4;
     text-decoration:none;
     font-weigth:800;
+    
 }
 
 .title{
@@ -25,13 +27,14 @@ margin-bottom:10px;
     font-size:32px;
     margin-bottom:20px;
     font-weigth:400;
+    
 }
 .smallTittle{
     font-size:16px;
     margin-bottom:20px;
     font-weigth:700;
     color:#333333;
-
+   
 }
 hr{
     margin-top:12px;
@@ -62,6 +65,14 @@ button{
     border-radius:10000px;
     background-color:#6F92BB;
 }
+ 
+
+
+    
+
+  
+   
+
 `;
 
 export default Box;

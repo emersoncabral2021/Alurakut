@@ -8,8 +8,8 @@ const MainGrid = styled.main`
   max-width:500px;
   padding:16px;
   .perfil{
-    @media(min-width:860px){
-      display:block;
+    @media(max-width:860px){
+      display:none;
     }
   }
   @media(min-width:860px){
