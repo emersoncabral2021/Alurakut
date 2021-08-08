@@ -11,8 +11,13 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    background-color: #D9E6F6;
+    background-image: url(' https://imgix.bustle.com/uploads/image/2020/11/6/be27b69a-ab5d-4840-8fda-c378a2ffbe16-genshin-impact-normalhero-01-ps4-17aug20-en-us.jpeg?w=2000&h=1090&fit=crop&crop=focalpoint&auto=format%2Ccompress&fp-x=0.5453333333333333&fp-y=0.6262626262626263');
+    background-color: #000000;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
     font-family: sans-serif;
+
   }
   #_next{
     display:flex;
@@ -24,7 +29,7 @@ const GlobalStyle = createGlobalStyle`
     height:auto;
     display:block;
   }
-  
+  https://imgix.bustle.com/uploads/image/2020/11/6/be27b69a-ab5d-4840-8fda-c378a2ffbe16-genshin-impact-normalhero-01-ps4-17aug20-en-us.jpeg?w=2000&h=1090&fit=crop&crop=focalpoint&auto=format%2Ccompress&fp-x=0.5453333333333333&fp-y=0.6262626262626263
   ${AlurakutStyles}
 `
 

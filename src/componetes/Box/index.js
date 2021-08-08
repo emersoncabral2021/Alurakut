@@ -6,6 +6,7 @@ border-radiua: 8px;
 padding:16px;
 margin-bottom:10px;
 overflow-y: auto;
+
 /*css pre-pronto*/
 
 .boxLink{
@@ -66,7 +67,10 @@ button{
     background-color:#6F92BB;
 }
  
-
+a{
+    text-decoration:none;
+    color:blue;
+}
 
     
 

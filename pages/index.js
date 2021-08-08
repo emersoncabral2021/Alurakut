@@ -6,7 +6,6 @@ import {AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet} 
 import {ProfileRelationsBoxWrapper} from '../src/componetes/ProfileRelation';
 
 
-
 function ProfileSiderbar(propiedade){
   
   return(
@@ -62,14 +61,15 @@ export default function Home() {
     image: 'https://images-americanas.b2w.io/produtos/01/00/img/1300669/0/1300669064_1GG.jpg'
   }
 ])
-  
   const PessoasFavoritas = [
   'juunegreiros',
   'omariosouto',
   'peas',
   'rafaballerini',
   'marcobrunodev',
-  'xzxzxzx'
+  'xzxzxzx',
+  'fffffffff',
+  'dfdfdfdf'
 ]
 /*const comunidade = [
   'Alura'
@@ -101,7 +101,6 @@ export default function Home() {
       <form onSubmit={function handleCriarComunidade(event){
         /* event.preventDefault(); para parar o submit do form*/
         event.preventDefault();
-
         const DadosDoForm = new FormData(event.target)
 
         const comunidade = {
@@ -143,11 +142,11 @@ export default function Home() {
       </form>
     </Box>
     </div>
-   
+  
     <div className="comunidade" style={{gridArea:'comunidade'}}>
-      <Box>
+      <Box >
         
-        <ProfileRelationsBoxWrapper>
+        <ProfileRelationsBoxWrapper >
       <h2 className="smallTittle">
             Comunidade ({comunidades.length})
       </h2>
@@ -155,6 +154,7 @@ export default function Home() {
       <ul>
       {comunidades.map((itematual)=>{
         return (
+         
           <li key={itematual.id}>
           <a href={`/users/${itematual.title}`} >
           <img src={itematual.image}/>
@@ -166,28 +166,31 @@ export default function Home() {
       </ul>
       
       </ProfileRelationsBoxWrapper>
-
+      <button>Ver todos</button>
       </Box>
       <Box>
-        <ProfileRelationsBoxWrapper>
-      <h2 className="smallTittle">
+        <h2 className="smallTittle">
             Pessoas da Comunidade ({PessoasFavoritas.length})
       </h2>
-
-      <ul>
-      {PessoasFavoritas.map((itematual)=>{
-        return (
-          <li key={itematual}>
-          <a href={`/users/${itematual}`}>
-          <img src={`https://github.com/${itematual}.png`}/>
-          <span>{itematual}</span>
-          </a>
-          </li>
-        )
-      })}
-      </ul>
-
+        <ProfileRelationsBoxWrapper>
+      
+        <ul>
+              {PessoasFavoritas.map((itematual)=>{
+                return (
+                  
+                  <li key={itematual}>
+                  <a href={`/users/${itematual}`}>
+                  <img src={`https://github.com/${itematual}.png`}/>
+                  <span>{itematual}</span>
+                  </a>
+                  </li>
+                )
+              })}
+              </ul>
+    
+        
       </ProfileRelationsBoxWrapper>
+      <button>Ver todos</button>
     </Box>
     
     <Box>
@@ -209,6 +212,7 @@ export default function Home() {
       })}
       </ul>
       </ProfileRelationsBoxWrapper>
+      <p><button>Ver todos</button></p>
     </Box>
 
    
