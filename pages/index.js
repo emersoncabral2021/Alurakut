@@ -35,6 +35,21 @@ function ProfileSiderbar(propiedade){
 /*para acessa uma variavel no meio do codigo html so usar {e colocar variavel} ex:src={`https://github.com/${githubUser}.png`}*/
 
 /*<></> para agrupa duas tag em uma mesma função*/
+
+function ProfileRelationBox(propiedades){
+  return(
+    <ProfileRelationsBoxWrapper >
+    <h2 className="smallTittle">
+   {propiedades.title} ({propiedades.itens.length})
+    </h2>
+      <ul>
+
+      </ul>
+    
+    
+    </ProfileRelationsBoxWrapper>
+  )
+}
 export default function Home() {
  
   const githubUser = 'emersoncabral2021'  
@@ -67,13 +82,20 @@ export default function Home() {
   'peas',
   'rafaballerini',
   'marcobrunodev',
-  'xzxzxzx',
-  'fffffffff',
-  'dfdfdfdf'
+  
 ]
-/*const comunidade = [
-  'Alura'
-]*/
+//0 - Pegar o array de dados do github
+const [seguidores, setseguidores] = React.useState([]);
+React.useEffect(function(){
+  fetch('https://api.github.com/users/peas/followers')
+.then(function(respotaDoServidor){
+  return respotaDoServidor.json();
+})
+.then(function(respotaCompleta){
+  setseguidores(respotaCompleta)
+  })
+},[])
+//1 - Criar um box que vai ter um map, baseando nos itens do array que pegamos no github
 
 
 
@@ -144,8 +166,9 @@ export default function Home() {
     </div>
   
     <div className="comunidade" style={{gridArea:'comunidade'}}>
+        <ProfileRelationBox title='Seguidores' itens={[seguidores]}/>
+
       <Box >
-        
         <ProfileRelationsBoxWrapper >
       <h2 className="smallTittle">
             Comunidade ({comunidades.length})
@@ -179,7 +202,7 @@ export default function Home() {
                 return (
                   
                   <li key={itematual}>
-                  <a href={`/users/${itematual}`}>
+                  <a href={`https://github.com/${itematual}`} target='_blank'>
                   <img src={`https://github.com/${itematual}.png`}/>
                   <span>{itematual}</span>
                   </a>
