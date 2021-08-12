@@ -53,11 +53,7 @@ function ProfileRelationBox(propiedades){
 export default function Home() {
  
   const githubUser = 'emersoncabral2021'  
-  const [comunidades, setcomunidades] = React.useState([{
-    id:'533577979393953775779179719719',
-    title:'Eu odeio acorda cedo',
-    image: 'https://4.bp.blogspot.com/-rkNMIji7xw4/Wzj43pATksI/AAAAAAAABlc/kE7NGMIXS2YyWMRH3DolTgt7BUQtJIHXQCLcBGAs/s1600/garfield.jpg'
-  }])
+  const [comunidades, setcomunidades] = React.useState([])
   
   const [jogos, setjogos] = React.useState([{
     title:'Genshin Impact',
@@ -94,9 +90,31 @@ React.useEffect(function(){
 .then(function(respotaCompleta){
   setseguidores(respotaCompleta)
   })
+
+  fetch('https://graphql.datocms.com/',{
+    method: 'POST',
+    headers: {
+      'Authorization':'df4405fff579c50e5540e01f4e346e',
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify({ "query": `query {  
+      allCommunits {
+      id
+      title
+      imageUrl
+      creadorSlug
+    }
+  }`})
+  })
+  .then((response)=> response.json())// pega o retorno do response.json e já retorna
+  .then((respotaCompleta)=> {
+    const comunidadesvindododato = respotaCompleta.data.allCommunits;
+    setcomunidades(comunidadesvindododato)
+  })
 },[])
 //1 - Criar um box que vai ter um map, baseando nos itens do array que pegamos no github
-
+console.log(seguidores.length)
 
 
   return (
@@ -166,7 +184,7 @@ React.useEffect(function(){
     </div>
   
     <div className="comunidade" style={{gridArea:'comunidade'}}>
-        <ProfileRelationBox title='Seguidores' itens={[seguidores]}/>
+        <ProfileRelationBox title='Seguidores' itens={seguidores}/>
 
       <Box >
         <ProfileRelationsBoxWrapper >
@@ -180,7 +198,7 @@ React.useEffect(function(){
          
           <li key={itematual.id}>
           <a href={`/users/${itematual.title}`} >
-          <img src={itematual.image}/>
+          <img src={itematual.imageUrl}/>
           <span>{itematual.title}</span>
           </a>
           </li>
