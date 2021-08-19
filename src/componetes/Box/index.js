@@ -72,11 +72,6 @@ a{
     color:blue;
 }
 
-    
-
-  
-   
-
 `;
 
 export default Box;

@@ -1,5 +1,7 @@
 //import styled from 'styled-components'
 import React from 'react';
+import nookies from 'nookies';
+import jwt from 'jsonwebtoken';
 import MainGrid from '../src/componetes/MainGrid';
 import Box from '../src/componetes/Box';
 import {AlurakutMenu, AlurakutProfileSidebarMenuDefault, OrkutNostalgicIconSet} from '../src/lib/AlurakutComuns';
@@ -50,13 +52,13 @@ function ProfileRelationBox(propiedades){
     </ProfileRelationsBoxWrapper>
   )
 }
-export default function Home() {
+export default function Home(props) {
  
-  const githubUser = 'emersoncabral2021'  
+  const usuarioAleatorio = props.githubUser;  
   const [comunidades, setcomunidades] = React.useState([])
   
-  const [jogos, setjogos] = React.useState([{
-    title:'Genshin Impact',
+  const jogos = [
+    {title:'Genshin Impact',
     image: 'https://static.apksmods.com/images/en/com.miHoYo.GenshinImpact/icon.png'
   },
   {
@@ -71,7 +73,7 @@ export default function Home() {
     title:'Fortnite',
     image: 'https://images-americanas.b2w.io/produtos/01/00/img/1300669/0/1300669064_1GG.jpg'
   }
-])
+]
   const PessoasFavoritas = [
   'juunegreiros',
   'omariosouto',
@@ -90,7 +92,7 @@ React.useEffect(function(){
 .then(function(respotaCompleta){
   setseguidores(respotaCompleta)
   })
-
+// API GraphQL
   fetch('https://graphql.datocms.com/',{
     method: 'POST',
     headers: {
@@ -114,7 +116,6 @@ React.useEffect(function(){
   })
 },[])
 //1 - Criar um box que vai ter um map, baseando nos itens do array que pegamos no github
-console.log(seguidores.length)
 
 
   return (
@@ -122,7 +123,7 @@ console.log(seguidores.length)
   <AlurakutMenu/>
   <MainGrid>
     <div className="perfil" style={{gridArea:'perfil'}}>
-      <ProfileSiderbar githubUser={githubUser}/>
+      <ProfileSiderbar githubUser={usuarioAleatorio}/>
     </div>
     
     <div className="principal" style={{gridArea:'principal'}}>
@@ -144,23 +145,28 @@ console.log(seguidores.length)
         const DadosDoForm = new FormData(event.target)
 
         const comunidade = {
-          id: new Date().toISOString,
           title: DadosDoForm.get('title'),
-          image: DadosDoForm.get('image')
+          imageUrl: DadosDoForm.get('image'),
+          creadorslug: usuarioAleatorio
         }
+
+        fetch('/api/comunidades.js',{
+          method:'POST',
+          headers:{
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(comunidade)
+        })
+        .then(async (response)=>{
+          const dados = await response.json();
+        const comunidade = dados.registroCriado  
+        console.log(comunidade)
         const comunidadeAtuaizada = [...comunidades, comunidade]
-        setcomunidades(comunidadeAtuaizada)
-
         
-        //const DadosDojogos = new FormData(event.target)
-        //const jogo = {
-          //id: new Date().toISOString,
-          //title: DadosDojogos.get('title'),
-          //image: DadosDojogos.get('image')
-        //}
-        //const jogoAtuaizada = [...jogos, jogo]
-        //setjogos(jogoAtuaizada)
-
+        setcomunidades(comunidadeAtuaizada)
+        
+        })
+     
         
 
       }}>
@@ -262,3 +268,31 @@ console.log(seguidores.length)
   </>
   )
 };
+
+
+export async function getServerSideProps(context) {
+  const cookies = nookies.get(context)
+  const token = cookies.USER_TOKEN;
+  const { isAuthenticated } = await fetch('https://alurakut.vercel.app/api/auth', {
+    headers: {
+        Authorization: token
+      }
+  })
+  .then((resposta) => resposta.json())
+
+  if(!isAuthenticated) {
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      }
+    }
+  }
+
+  const { githubUser } = jwt.decode(token);
+  return {
+    props: {
+      githubUser
+    }, // will be passed to the page component as props
+  }
+}
